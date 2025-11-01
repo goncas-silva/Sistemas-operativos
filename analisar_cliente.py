@@ -110,9 +110,9 @@ def main ():
 
     resultado=Value('d', 0.0) #armazena o total
 
-    p1 = Process(target=process_artigos_caros, args=(name, q1))
-    p2 = Process(target=process_total_gasto, args=(name, q2, result))
-    p3 = Process(target=process_analise_temporal, args=(name, q3))
+    p1 = Process(target=thread1_artigos_caros, args=(name, q1))
+    p2 = Process(target=thread2_total_gasto, args=(name, q2, result))
+    p3 = Process(target=thread3_analise_temporal, args=(name, q3))
 
     print(f"{prefix(name, 'main')} Análise iniciada.")
 
