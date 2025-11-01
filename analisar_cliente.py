@@ -99,7 +99,7 @@ def main ():
         print(f"ficheiro: {ficheiro}, não foi encontrado ")
         sys.exit(1)
 
-    nome,extensao = os.path.splittext(ficheiro)
+    nome,extensao = os.path.splitext(ficheiro)
     if extensao.lower() != '.csv':
         print(f"Erro o arquivo {ficheiro} não tem a extensão .csv")
         sys.exit(1)
