@@ -24,7 +24,7 @@ do
 echo "Pesquisa: $ficheiro"
 #cat $ficheiro &
 processo_py $ficheiro
-(echo ola && sleep 2 && echo adeus)&
+
 
 ((i++))
 
