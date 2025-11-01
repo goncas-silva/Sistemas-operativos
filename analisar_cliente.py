@@ -35,17 +35,50 @@ def parse_line(parts):
 
 
 # Thread 1: artigos caros (>1000€)
-def thread1(name,q):
-    pass
+def thread1_artigos_caros(name,q):
+    while True:
+        item = q.get()
+        if item is None:
+            break
+        data, produto, preco = item
+        if preco > PRICE_THRESHOLD:
+            print(f"{prefix(name, 'P1')} Compra cara: {produto} -> {preco:.2f}€")
+        time.sleep(SLEEP_SEC)
+
+    
+
     
 
 # Thread 2: total gasto
-def thread2():
-    pass
+def thread2_total_gasto(name,q,result):
+    total=0.0
+    while True:
+        item=q.get()
+        if item is None:
+            break
+        data, produto, preco = item
+        total += preco
+        time.sleep(SLEEP_SEC)
+    result.value=total
+    print(f"{prefix(name, 'P2')} Total gasto: {total:.2f}€")
+    
 
 # Thread 3: compras nos dias 29,30,31
-def thread3():
-    pass
+def thread3_analise_temporal(name,q):
+    while True:
+        item = q.get()
+        if item is None:
+            break
+        data, produto, preco = item
+        try:
+            day = int(data.split('-')[2])
+            if day in SPECIAL_DAYS:
+                print(f"{prefix(name, 'P3')} Compra dia especial: {produto} -> {data}")
+        except Exception:
+            print(f"{prefix(name, 'P3')} Erro ao processar data: {data}")  # Log para erro de formatação de data
+        time.sleep(SLEEP_SEC)
+
+    
 
 
 
